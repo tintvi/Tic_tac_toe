@@ -1,7 +1,27 @@
 import {ReactElement} from "react";
 
-export default function History(): ReactElement{
+interface HistoryPropsInterface{
+    history: (any)[][];
+
+    setMapItems: (item: (string | null)[]) => void;
+}
+
+export default function History(props: HistoryPropsInterface): ReactElement{
+
+    const onClickHandler = (index: number) => {
+        props.setMapItems(props.history[index]);
+    }
+
     return(
-        <p>history</p>
+        <div>
+            <h6>history</h6>
+            <ol>
+                {props.history.map((historyItem, index) => {
+                    return <li key={index} onClick={() => onClickHandler(index)}>
+                        step {index + 1}
+                    </li>
+                })}
+            </ol>
+        </div>
     )
 }

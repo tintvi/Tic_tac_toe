@@ -6,11 +6,19 @@ interface MapPropsInterface {
     mapItems: string[] | null[];
     onClickHandler: (index: number) => void;
     currentPlayer: string;
+    winner: string | null;
 }
 
 export default function Map(props:MapPropsInterface): ReactElement{
     return(
         <div>
+
+            {props.winner !== null && <div>
+                <h1>
+                    WINNER : {props.winner}
+                </h1>
+            </div>}
+
             <div className="mapWrapper">
                 {props.mapItems.map((value, index) => {
                 return (
